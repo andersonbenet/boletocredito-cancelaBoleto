@@ -14,9 +14,6 @@ ${base_path}  /cancelaBoleto
     ...   Content-Type=application/json
 
 *** Keywords ***
-################################################################
-#TC001: Validar cancelamento de boleto no crédito
-################################################################
 Solicitar cancelamento
     [Arguments]  ${agencia}  ${dataCancelamento}  ${motivoCancelamento}  ${parcela}  ${titulo}
     Create Session      api    ${base_uri}  disable_warnings=1
