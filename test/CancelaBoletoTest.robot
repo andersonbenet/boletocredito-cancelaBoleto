@@ -19,7 +19,7 @@ TC001: Validar cancelamento de boleto no crédito com sucesso
     ${agencia}=             Set Variable  ${boleto[0][0]}
 
     ${date}=	Get Current Date
-    ${date_format}=  Convert Date  ${date}  result_format=%Y.%m.%d
+    ${date_format}=  Convert Date  ${date}  result_format=%Y-%m-%d
     ${date}=  Set Variable  ${date_format}T15:55:02.917Z
     ${dataCancelamento}=    Set Variable  ${date}
 
@@ -37,7 +37,7 @@ TC002: Validar cancelamento de boleto no crédito com falha
     ${agencia}=             Set Variable  ${boleto[0][0]}
 
     ${date}=	Get Current Date
-    ${date_format}=  Convert Date  ${date}  result_format=%Y.%m.%d
+    ${date_format}=  Convert Date  ${date}  result_format=%Y-%m-%d
     ${date}=  Set Variable  ${date_format}T15:55:02.917Z
     ${dataCancelamento}=    Set Variable  ${date}
 
