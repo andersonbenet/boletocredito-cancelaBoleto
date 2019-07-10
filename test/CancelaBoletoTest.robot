@@ -9,9 +9,6 @@ ${user}=  user_consulta
 ${password}=  user_consulta
 ${connect_string}=  '${user}/${password}@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=dtb1admindb010d.des.sicredi.net)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=BOLETOCREDITOHMLPDB)(SERVER=DEDICATED)))'
 
-
-
-
 *** Test Case ***
 TC001: Validar cancelamento de boleto no crédito com sucesso
     ${cod_situacao}=  Set Variable  GE
@@ -23,7 +20,7 @@ TC001: Validar cancelamento de boleto no crédito com sucesso
     ${date}=  Set Variable  ${date_format}T15:55:02.917Z
     ${dataCancelamento}=    Set Variable  ${date}
 
-    ${motivoCancelamento}=  Set Variable  ${boleto[0][1]}
+    ${motivoCancelamento}=  Set Variable  PA
     ${parcela}=             Convert To String  ${boleto[0][2]}
     ${titulo}=              Set Variable  ${boleto[0][3]}
 
@@ -41,7 +38,7 @@ TC002: Validar cancelamento de boleto no crédito com falha
     ${date}=  Set Variable  ${date_format}T15:55:02.917Z
     ${dataCancelamento}=    Set Variable  ${date}
 
-    ${motivoCancelamento}=  Set Variable  ${boleto[0][1]}
+    ${motivoCancelamento}=  Set Variable  PA
     ${parcela}=             Convert To String  ${boleto[0][2]}
     ${titulo}=              Set Variable  ${boleto[0][3]}
 
