@@ -13,13 +13,27 @@ ${connect_string}=  '${user}/${password}@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PR
 
 
 *** Test Case ***
-#TC001: Validar cancelamento de boleto no crédito com sucesso
-#    Solicitar cancelamento  0307  2019-07-09T15:55:02.917Z  PA  21  B919326461
-#    Validar status code sucesso
+TC001: Validar cancelamento de boleto no crédito com sucesso
+    ${cod_situacao}=  Set Variable  GE
+    ${boleto}=  Buscar Boleto  ${user}  ${password}  ${connect_string}  ${cod_situacao}
+    ${agencia}=             Set Variable  ${boleto[0][0]}
+
+    ${date}=	Get Current Date
+    ${date_format}=  Convert Date  ${date}  result_format=%Y.%m.%d
+    ${date}=  Set Variable  ${date_format}T15:55:02.917Z
+    ${dataCancelamento}=    Set Variable  ${date}
+
+    ${motivoCancelamento}=  Set Variable  ${boleto[0][1]}
+    ${parcela}=             Convert To String  ${boleto[0][2]}
+    ${titulo}=              Set Variable  ${boleto[0][3]}
+
+    Solicitar cancelamento  ${agencia}  ${dataCancelamento}  ${motivoCancelamento}  ${parcela}  ${titulo}
+    Validar status code sucesso
 
 
 TC002: Validar cancelamento de boleto no crédito com falha
-    ${boleto}=  Buscar Boleto  ${user}  ${password}  ${connect_string}
+    ${cod_situacao}=  Set Variable  PA
+    ${boleto}=  Buscar Boleto  ${user}  ${password}  ${connect_string}  ${cod_situacao}
     ${agencia}=             Set Variable  ${boleto[0][0]}
 
     ${date}=	Get Current Date
